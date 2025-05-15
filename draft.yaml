@@ -1,0 +1,144 @@
+models:
+  User:
+    id: id
+    username: string
+    password: string
+    status: string default:'active'
+    relationships:
+      hasMany: Contacts, user_tenant, user_category, Ticket, ticket_events
+  Tenant:
+    id: id
+    code: string
+    name: string
+    logo: string
+    description: string
+    status: string default:'active'
+    relationships:
+      hasMany: user_tenant, category_tenant, Configurations
+
+  Contacts:
+    id: id
+    key: string
+    value: string
+    techinician_id: foreign:Technician
+    user_id: foreign:User
+
+  Technician:
+    id: id
+    user_id: foreign:User
+    status: string default:'active'
+    relationships:
+      hasMany: technician_queue, ticket_events, Ticket
+
+  Category:
+    id: id
+    name: string
+    code: string
+    icon: string
+    status: string default:'active'
+    relationships:
+      hasMany: user_category, category_queue, category_tenant, Ticket, ticket_events
+
+  Queue:
+    id: id
+    last_assign: integer
+    technician_counter: integer
+    is_cronogramable: boolean
+    is_promediable: boolean
+    priority: string
+    status: string default:'active'
+    relationships:
+      hasMany: technician_queue, category_queue, Ticket, ticket_events
+
+  Ticket:
+    id: id
+    code: string
+    detail: text
+    type: string
+    category_id: foreign:Category
+    queue_id: foreign:Queue
+    from_user: foreign:User
+    technician_id: foreign:Technician
+    in_cronograma: boolean
+    is_promediable: boolean
+    fecha_reg: timestamp
+    now_is: string
+    relationships:
+      hasMany: ticket_events
+
+  user_tenant:
+    id: id
+    user_id: foreign:User
+    tenant_id: foreign:Tenant
+    status: string default:'active'
+
+  technician_queue:
+    id: id
+    technician_id: foreign:Technician
+    queue_id: foreign:Queue
+    position: integer
+    status: string default:'active'
+
+  user_category:
+    id: id
+    user_id: foreign:User
+    category_id: foreign:Category
+    is_admin: boolean
+    status: string default:'active'
+
+  category_queue:
+    id: id
+    category_id: foreign:Category
+    queue_id: foreign:Queue
+    status: string default:'active'
+
+  category_tenant:
+    id: id
+    category_id: foreign:Category
+    tenant_id: foreign:Tenant
+    is_public: boolean
+    status: string default:'active'
+
+  ticket_events:
+    id: id
+    ticket_id: foreign:Ticket
+    event: string
+    in_status: string
+    category_id: foreign:Category
+    queue_id: foreign:Queue
+    technician_id: foreign:Technician
+    user_id: foreign:User
+    in_cronograma: boolean
+    is_promediable: boolean
+    fecha_reg: timestamp
+    user_reg: string
+    status: string
+    relationships:
+      hasMany: ticket_file
+
+  ticket_file:
+    id: id
+    event_id: foreign:ticket_events
+    label: string
+    description: text
+    format: string
+    status: string
+    fecha_reg: timestamp
+
+  Configurations:
+    id: id
+    key: string
+    value: string
+    description: string
+    status: string default:'active'
+    tenant_id: foreign:Tenant
+    relationships:
+      hasMany: configurations_history
+
+  configurations_history:
+    id: id
+    config_old: foreign:Configurations
+    json_old: text
+    json_new: text
+    user_reg: string
+    fecha_reg: timestamp

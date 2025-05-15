@@ -1,0 +1,66 @@
+created:
+    - database/factories/UserFactory.php
+    - database/factories/TenantFactory.php
+    - database/factories/ContactsFactory.php
+    - database/factories/TechnicianFactory.php
+    - database/factories/CategoryFactory.php
+    - database/factories/QueueFactory.php
+    - database/factories/TicketFactory.php
+    - database/factories/UserTenantFactory.php
+    - database/factories/TechnicianQueueFactory.php
+    - database/factories/UserCategoryFactory.php
+    - database/factories/CategoryQueueFactory.php
+    - database/factories/CategoryTenantFactory.php
+    - database/factories/TicketEventsFactory.php
+    - database/factories/TicketFileFactory.php
+    - database/factories/ConfigurationsFactory.php
+    - database/factories/ConfigurationsHistoryFactory.php
+    - database/migrations/2025_05_14_134106_create_users_table.php
+    - database/migrations/2025_05_14_134107_create_tenants_table.php
+    - database/migrations/2025_05_14_134108_create_contacts_table.php
+    - database/migrations/2025_05_14_134109_create_technicians_table.php
+    - database/migrations/2025_05_14_134110_create_categories_table.php
+    - database/migrations/2025_05_14_134111_create_queues_table.php
+    - database/migrations/2025_05_14_134112_create_tickets_table.php
+    - database/migrations/2025_05_14_134113_create_user_tenants_table.php
+    - database/migrations/2025_05_14_134114_create_technician_queues_table.php
+    - database/migrations/2025_05_14_134115_create_user_categories_table.php
+    - database/migrations/2025_05_14_134116_create_category_queues_table.php
+    - database/migrations/2025_05_14_134117_create_category_tenants_table.php
+    - database/migrations/2025_05_14_134118_create_ticket_events_table.php
+    - database/migrations/2025_05_14_134119_create_ticket_files_table.php
+    - database/migrations/2025_05_14_134120_create_configurations_table.php
+    - database/migrations/2025_05_14_134121_create_configurations_histories_table.php
+    - app/Models/User.php
+    - app/Models/Tenant.php
+    - app/Models/Contacts.php
+    - app/Models/Technician.php
+    - app/Models/Category.php
+    - app/Models/Queue.php
+    - app/Models/Ticket.php
+    - app/Models/user_tenant.php
+    - app/Models/technician_queue.php
+    - app/Models/user_category.php
+    - app/Models/category_queue.php
+    - app/Models/category_tenant.php
+    - app/Models/ticket_events.php
+    - app/Models/ticket_file.php
+    - app/Models/Configurations.php
+    - app/Models/configurations_history.php
+models:
+    User: { id: id, username: string, password: string, status: "string default:'active'", relationships: { hasMany: 'Contacts, user_tenant, user_category, Ticket, ticket_events' } }
+    Tenant: { id: id, code: string, name: string, logo: string, description: string, status: "string default:'active'", relationships: { hasMany: 'user_tenant, category_tenant, Configurations' } }
+    Contacts: { id: id, key: string, value: string, techinician_id: 'foreign:Technician', user_id: 'foreign:User' }
+    Technician: { id: id, user_id: 'foreign:User', status: "string default:'active'", relationships: { hasMany: 'technician_queue, ticket_events, Ticket' } }
+    Category: { id: id, name: string, code: string, icon: string, status: "string default:'active'", relationships: { hasMany: 'user_category, category_queue, category_tenant, Ticket, ticket_events' } }
+    Queue: { id: id, last_assign: integer, technician_counter: integer, is_cronogramable: boolean, is_promediable: boolean, priority: string, status: "string default:'active'", relationships: { hasMany: 'technician_queue, category_queue, Ticket, ticket_events' } }
+    Ticket: { id: id, code: string, detail: text, type: string, category_id: 'foreign:Category', queue_id: 'foreign:Queue', from_user: 'foreign:User', technician_id: 'foreign:Technician', in_cronograma: boolean, is_promediable: boolean, fecha_reg: timestamp, now_is: string, relationships: { hasMany: ticket_events } }
+    user_tenant: { id: id, user_id: 'foreign:User', tenant_id: 'foreign:Tenant', status: "string default:'active'" }
+    technician_queue: { id: id, technician_id: 'foreign:Technician', queue_id: 'foreign:Queue', position: integer, status: "string default:'active'" }
+    user_category: { id: id, user_id: 'foreign:User', category_id: 'foreign:Category', is_admin: boolean, status: "string default:'active'" }
+    category_queue: { id: id, category_id: 'foreign:Category', queue_id: 'foreign:Queue', status: "string default:'active'" }
+    category_tenant: { id: id, category_id: 'foreign:Category', tenant_id: 'foreign:Tenant', is_public: boolean, status: "string default:'active'" }
+    ticket_events: { id: id, ticket_id: 'foreign:Ticket', event: string, in_status: string, category_id: 'foreign:Category', queue_id: 'foreign:Queue', technician_id: 'foreign:Technician', user_id: 'foreign:User', in_cronograma: boolean, is_promediable: boolean, fecha_reg: timestamp, user_reg: string, status: string, relationships: { hasMany: ticket_file } }
+    ticket_file: { id: id, event_id: 'foreign:ticket_events', label: string, description: text, format: string, status: string, fecha_reg: timestamp }
+    Configurations: { id: id, key: string, value: string, description: string, status: "string default:'active'", tenant_id: 'foreign:Tenant', relationships: { hasMany: configurations_history } }
+    configurations_history: { id: id, config_old: 'foreign:Configurations', json_old: text, json_new: text, user_reg: string, fecha_reg: timestamp }
