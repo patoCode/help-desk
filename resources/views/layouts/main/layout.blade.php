@@ -14,7 +14,7 @@
     @livewireStyles
     @fluxAppearance
 </head>
-<body>
+<body data-theme="nord">
     <div class="drawer">
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col">
@@ -29,6 +29,7 @@
     </div>
 
     @stack('modals')
+
     @livewireScripts
     @fluxScripts
 </body>

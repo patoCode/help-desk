@@ -58,4 +58,9 @@ class Category extends Model
     {
         return $this->hasMany(TicketEvents::class);
     }
+    public function tenants()
+    {
+        return $this->belongsToMany(Tenant::class, 'category_tenants')
+            ->withPivot('is_public', 'status');
+    }
 }

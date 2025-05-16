@@ -66,4 +66,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Tenant::class, 'user_tenants');
     }
+
+    public function userTenants()
+    {
+        return $this->hasMany(UserTenant::class);
+    }
+
+    public function technician()
+    {
+        return $this->hasOne(Technician::class);
+    }
 }

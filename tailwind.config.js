@@ -20,6 +20,8 @@ export default {
     },
     plugins: [forms, typography, require('daisyui')],
     daisyui: {
-        themes: ["nord"],
+        themes: false,
+        darkTheme: "light",
+        themeRoot: ":root",
     }
 };

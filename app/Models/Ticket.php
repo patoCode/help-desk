@@ -16,19 +16,7 @@ class Ticket extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'code',
-        'detail',
-        'type',
-        'category_id',
-        'queue_id',
-        'from_user',
-        'technician_id',
-        'in_cronograma',
-        'is_promediable',
-        'fecha_reg',
-        'now_is',
-    ];
+    protected $guarded = [];
 
     /**
      * Get the attributes that should be cast.
@@ -48,6 +36,10 @@ class Ticket extends Model
             'fecha_reg' => 'timestamp',
         ];
     }
+    public function getFechaRegFormateadaAttribute()
+    {
+        return \Carbon\Carbon::createFromTimestamp($this->fecha_reg)->format('d/m/Y H:i:s');
+    }
 
     public function ticketEvents(): HasMany
     {
@@ -64,13 +56,18 @@ class Ticket extends Model
         return $this->belongsTo(Queue::class);
     }
 
-    public function fromUser(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'from_user');
     }
 
     public function technician(): BelongsTo
     {
         return $this->belongsTo(Technician::class);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(TicketEvents::class, 'ticket_id');
     }
 }

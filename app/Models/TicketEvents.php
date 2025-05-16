@@ -50,6 +50,11 @@ class TicketEvents extends Model
             'fecha_reg' => 'timestamp',
         ];
     }
+    public function getFechaRegFormateadaAttribute()
+    {
+        return \Carbon\Carbon::createFromTimestamp($this->fecha_reg)->format('d/m/Y H:i:s');
+    }
+
 
     public function ticketFiles(): HasMany
     {

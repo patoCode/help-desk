@@ -25,6 +25,11 @@ $links = [
         'icon' => 'fa-solid fa-cog',
         'route' => route('configurations.index')
     ],
+    [
+        'name' => 'Mi Panel',
+        'icon' => 'fa-solid fa-cog',
+        'route' => route('my-panel.index')
+    ],
 ]
 
 @endphp

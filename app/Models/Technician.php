@@ -11,21 +11,11 @@ class Technician extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'user_id',
         'status',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
@@ -53,4 +43,5 @@ class Technician extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }

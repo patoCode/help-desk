@@ -35,7 +35,9 @@
            'label' => 'Techicians',
            'checked'=>  false
        ])
-        <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
+        <div class="tab-content bg-base-100 border-base-300 p-6">
+            <livewire:tech.datatable :tenant_id="$tenant->id"></livewire:tech.datatable>
+        </div>
 
 
         @include('app.tenants.includes.tab-label',[
@@ -45,7 +47,9 @@
            'label' => 'Categories',
            'checked'=>  false
        ])
-        <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 1</div>
+        <div class="tab-content bg-base-100 border-base-300 p-6">
+            <livewire:category.datatable :tenant_id="$tenant->id"></livewire:category.datatable>
+        </div>
 
         @include('app.tenants.includes.tab-label',[
            'svg' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">

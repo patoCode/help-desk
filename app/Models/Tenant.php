@@ -40,4 +40,15 @@ class Tenant extends Model
         return $this->belongsToMany(User::class, 'user_tenants');
     }
 
+    public function techs(){
+        return $this->hasMany(Technician::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_tenants')
+            ->withPivot('is_public', 'status')
+            ->wherePivot('status', 'active');
+    }
+
 }
