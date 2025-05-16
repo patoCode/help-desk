@@ -24,17 +24,17 @@
                     <td>{{ $ticket->category->name }}</td>
                     <td>
                         <div class="drawer-end">
-                            <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+                            <input id="events-drawer-{{$ticket->id}}" type="checkbox" class="drawer-toggle" />
                             <div class="drawer-content">
                                 <!-- Page content here -->
-                                <label for="my-drawer" class="btn btn-primary drawer-button">
-                                    <i class="fa-solid fa-eye"></i>
+                                <label for="events-drawer-{{$ticket->id}}" class="btn btn-primary drawer-button">
+                                    <i class="fa-solid fa-eye"></i> {{$ticket->id}}
                                 </label>
                             </div>
                             <div class="drawer-side">
-                                <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+                                <label for="events-drawer-{{$ticket->id}}" aria-label="close sidebar" class="drawer-overlay"></label>
                                 <div class="bg-base-200 text-base-content min-h-full w-[calc(100%-5%)] p-4">
-                                    <livewire:user.ticket.detail :ticket_id="$ticket->id"></livewire:user.ticket.detail>
+                                    <livewire:user.ticket.detail :ticket_id="$ticket->id" :key="$ticket->id"></livewire:user.ticket.detail>
                                 </div>
                             </div>
                         </div>

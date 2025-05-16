@@ -36,30 +36,62 @@
         <p>{{ $ticket->detail }}</p>
     </div>
     <div class="flex flex-row items-start justify-between gap-4 bg-slate-900 min-h-fit">
-        <div class="p-2 w-1/2">
+        <div class="p-2 w-1/3">
             <form action="" class="w-full p-2 bg-slate-600 space-y-2">
                 <textarea class="textarea textarea-bordered h-[100px] w-full" placeholder="Dejanos tu comentario"></textarea>
                 <input
                     type="file"
-                    class="file-input file-input-bordered file-input-primary w-full" />
+                    class="file-input file-input-bordered file-input-info w-full" />
                 <button class="btn btn-info w-full">Agregar</button>
             </form>
         </div>
-        <div class="p-2 w-1/2">
+        <div class="p-2 w-2/3">
             @foreach($events as $index => $event )
-                <div class="collapse collapse-arrow bg-base-200">
-                    <input type="radio" name="my-accordion-{{$event->id}}"/>
+                <div tabindex="{{ $index }}" class="collapse collapse-plus bg-blue-950 mb-2">
+                    <input type="checkbox" class="peer" />
                     <div class="collapse-title text-sm font-medium flex items-center justify-between">
-                        <div>{{ $index + 1 }} <i class="fa-solid fa-user"></i> {{ $event->user->name }}</div>
-                        <div class="badge"><i class="fa-solid fa-calendar"></i>{{ $event->fecha_reg_formateada }}</div>
+                        <div><i class="fa-solid fa-user"></i> {{ $event->user->name }} <span class="text-[10px]">({{ $event->fecha_reg_formateada }})</span></div>
                     </div>
                     <div class="collapse-content">
-                        <p>{{ $event->event }}</p>
-                        <span>{{ $event->user_reg }}</span>
+                        <div class="ticket-body min-h-[200px]">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam blanditiis cum dolore error est inventore ipsa, ipsum, iste laudantium mollitia repudiandae tempore temporibus vero. Et explicabo fugit maiores qui repellat!</p>
+                        </div>
+                        <div class="ticket-footer flex flex-row justify-between items-center bg-slate-600/20 p-1 rounded-sm">
+                            <div class="dropdown dropdown-hover dropdown-top min-w-[200px]">
+                                <div tabindex="0" role="button" class="m-1 hover:text-slate-300 p-2"><i class="fa-solid fa-paperclip"></i> Attachments </div>
+                                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                                    <li><a>Item 1</a></li>
+                                    <li><a>Item 2</a></li>
+                                </ul>
+                            </div>
+                            <span><i class="fa-solid fa-calendar"></i>{{ $event->fecha_reg_formateada }}</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div tabindex="1" class="collapse collapse-plus bg-blue-950">
+                    <input type="checkbox" class="peer" />
+                    <div class="collapse-title text-sm font-medium flex items-center justify-between">
+                        <div><i class="fa-solid fa-user"></i> {{ $event->user->name }} <span class="text-[10px]">({{ $event->fecha_reg_formateada }})</span></div>
+                    </div>
+                    <div class="collapse-content">
+                        <div class="ticket-body min-h-[200px]">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam blanditiis cum dolore error est inventore ipsa, ipsum, iste laudantium mollitia repudiandae tempore temporibus vero. Et explicabo fugit maiores qui repellat!</p>
+                        </div>
+                        <div class="ticket-footer flex flex-row justify-between items-center bg-slate-600/20 p-1 rounded-sm">
+                            <div class="dropdown dropdown-hover dropdown-top min-w-[200px]">
+                                <div tabindex="0" role="button" class="m-1"><i class="fa-solid fa-paperclip"></i> Attachments </div>
+                                 <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                                    <li><a>Item 1</a></li>
+                                    <li><a>Item 2</a></li>
+                                  </ul>
+                            </div>
+                            <span><i class="fa-solid fa-calendar"></i> {{ $event->fecha_reg_formateada }}</span>
+                        </div>
+
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
-
 </div>

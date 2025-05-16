@@ -27,7 +27,12 @@ $links = [
     ],
     [
         'name' => 'Mi Panel',
-        'icon' => 'fa-solid fa-cog',
+        'icon' => 'fa-solid fa-user',
+        'route' => route('my-panel.index')
+    ],
+    [
+        'name' => 'Imbox',
+        'icon' => 'fa-solid fa-inbox',
         'route' => route('my-panel.index')
     ],
 ]

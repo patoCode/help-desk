@@ -8,20 +8,20 @@
     <div class="flex flex-row w-full gap-4">
         <div class="card card-bordered bg-slate-500/50 text-primary-content w-1/3">
             <div class="card-body">
-                <h2 class="card-title">Generados hoy</h2>
-                <p>If a dog chews shoes whose shoes does he choose? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum debitis natus nemo nostrum pariatur? A aliquam consequuntur corporis deserunt dolor dolorem et eveniet in magni, modi nobis qui sint tenetur.</p>
+                <h2 class="card-title">Generados</h2>
+                <img src="{{ asset('graph2.png') }}" alt="" class="mx-auto">
             </div>
         </div>
         <div class="card card-bordered bg-teal-500/50 text-primary-content w-1/3">
             <div class="card-body">
                 <h2 class="card-title">Atendidos</h2>
-                <p>If a dog chews shoes whose shoes does he choose? Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aliquid at, aut ea eveniet natus nulla pariatur quos repellendus sequi sint vel? Blanditiis delectus est illum magni nesciunt nulla, ullam.</p>
+                <img src="{{ asset('graph.png') }}" alt="">
             </div>
         </div>
         <div class="card card-bordered bg-blue-600/50 text-primary-content w-1/3">
             <div class="card-body">
                 <h2 class="card-title">En curso</h2>
-                <p>If a dog chews shoes whose shoes does he choose? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae cum deleniti error eum eveniet ex illo ipsam laborum neque nesciunt nostrum obcaecati pariatur, quasi quia, quibusdam tenetur velit voluptas.</p>
+                <img src="{{ asset('graph3.png') }}" alt="">
             </div>
         </div>
     </div>
